@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="txt_login_size">30sp</dimen>
+    <dimen name="txt_login_margin">30dp</dimen>
+    <dimen name="form_title_size">25sp</dimen>
+    <dimen name="btn_size">15sp</dimen>
+</resources>

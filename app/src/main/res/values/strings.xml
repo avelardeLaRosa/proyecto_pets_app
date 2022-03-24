@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">proyecto_pets</string>
+    <string name="login">LogIn</string>
+    <string name="pets_app">Pets App</string>
+    <string name="singin">Crear cuenta</string>
+    <string name="Google">Google</string>
+    <string name="prefs_file">filekey</string>
+    <string name="Facebook">Facebook</string>
+    <string name="tvFromTitle">Registrate</string>
+    <string name="Nombres">Nombres</string>
+    <string name="Apellidos">Apellidos</string>
+    <string name="Dni">DNI</string>
+    <string name="Correo">Email</string>
+    <string name="Password">Password</string>
+    <string name="volver">Volver</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Crear">Ingresar</string>
+    <string name="Usuario">Usuario</string>
+    <string name="Contraseña">Contraseña</string>
+</resources>

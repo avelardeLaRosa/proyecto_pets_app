@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "708199650085",
+    "project_id": "proyectopets-avelarde2022",
+    "storage_bucket": "proyectopets-avelarde2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708199650085:android:aa0e96be58eba7169d80cc",
+        "android_client_info": {
+          "package_name": "com.system.proyecto_pets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708199650085-hhf9fjh81dj18r9avlsfjeake6s0jurv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM10AEsB5ruMDM05kVH9Ktw2ozp-I7z_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708199650085-hhf9fjh81dj18r9avlsfjeake6s0jurv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
