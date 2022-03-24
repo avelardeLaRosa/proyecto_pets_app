@@ -1,17 +1,15 @@
-package com.system.proyecto_pets
+package com.system.proyecto_pets.view
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.system.proyecto_pets.R
 import com.system.proyecto_pets.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnGoogle.setOnClickListener {
 
             //id token asociado a la app
-            val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id))
+            val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(
+                R.string.default_web_client_id
+            ))
                 .requestEmail()
                 .requestProfile()//solicitaremos el email del usuario
                 .build()
@@ -59,13 +59,13 @@ class MainActivity : AppCompatActivity() {
 
         }
         binding.btnLogin.setOnClickListener {
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
 
     }
 
-    private fun showHome(email:String, provider:tipoProovedor){
+    private fun showHome(email:String, provider: tipoProovedor){
 
         val homeIntent = Intent(this, HomeActivity::class.java).apply {
             putExtra("email",email)
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account.idToken,null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(){
                         if(it.isSuccessful){
-                            showHome(account.email ?: "", tipoProovedor.GOOGLE )
+                            showHome(account.email ?: "", tipoProovedor.GOOGLE)
                         }else{
                             showAlert()
                         }
