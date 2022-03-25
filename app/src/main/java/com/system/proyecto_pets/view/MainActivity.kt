@@ -51,13 +51,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         //BOTON DE CREAR CUENTA
-
         binding.btnCrearUser.setOnClickListener {
-
             val form = Intent(this, FormActivity::class.java)
             startActivity(form)
-
         }
+        //BOTON DE LOGIN
         binding.btnLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
@@ -65,12 +63,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun showHome(email:String, provider: tipoProovedor){
 
+    private fun showHome(email:String, provider: tipoProovedor){
         val homeIntent = Intent(this, HomeActivity::class.java).apply {
             putExtra("email",email)
             putExtra("provider",provider.name)
-
         }
         startActivity(homeIntent)
 

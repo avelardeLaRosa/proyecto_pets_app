@@ -1,8 +1,14 @@
 package com.system.proyecto_pets.viewmodel.dao
 
+import android.R.attr.password
+import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import androidx.room.RoomMasterTable
+import com.system.proyecto_pets.model.Usuario
+
 
 class UsuarioDao(context:Context):SQLiteOpenHelper(context, DB_NAME, null , DB_VERSION){
 
@@ -36,6 +42,112 @@ class UsuarioDao(context:Context):SQLiteOpenHelper(context, DB_NAME, null , DB_V
         val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
         p0?.execSQL(DROP_TABLE)
         onCreate(p0)
+    }
+
+
+    //Insertar Usuario
+    fun addUsuario(user:Usuario):Long{
+
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID, user.id)
+        contentValues.put(NOMBRE, user.nombre)
+        contentValues.put(APELLIDO, user.apellido)
+        contentValues.put(DNI, user.dni)
+        contentValues.put(EMAIL, user.email)
+        contentValues.put(PASSWORD, user.password)
+
+        val success = db.insert(TABLE_NAME, null, contentValues )
+        db.close()
+
+        return success
+
+    }
+
+
+    //obtener usuario
+    fun getUsuario(): List<Usuario>{
+
+        val listaUser = ArrayList<Usuario>()
+        val selectQuery = "SELECT * FROM $TABLE_NAME"
+        val db = writableDatabase
+
+        val cursor: Cursor?
+
+        try {
+            cursor = db.rawQuery(selectQuery,null)
+        }catch (e:Exception){
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+
+        var id:Int
+        var nombre:String
+        var apellido:String
+        var dni:String
+        var email:String
+        var password:String
+
+        if (cursor.moveToFirst()){
+            do{
+                id = cursor.getInt(cursor.getColumnIndex("id"))
+                nombre = cursor.getString(cursor.getColumnIndex("nombre"))
+                apellido = cursor.getString(cursor.getColumnIndex("apellido"))
+                dni = cursor.getString(cursor.getColumnIndex("dni"))
+                email = cursor.getString(cursor.getColumnIndex("email"))
+                password = cursor.getString(cursor.getColumnIndex("password"))
+
+                val user = Usuario(
+                    id = id,
+                    nombre = nombre,
+                    apellido = apellido,
+                    dni = dni,
+                    email = email,
+                    password = password
+                    )
+
+                listaUser.add(user)
+
+            }while (cursor.moveToNext())
+        }
+        return listaUser
+    }
+
+
+    //VALIDAR USUARIO Y CONTRASEÑA
+
+    fun validar(us:String, pass: String):Usuario?{
+        val db = writableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $EMAIL = '$us' AND $PASSWORD = '$pass'"
+
+
+        val cursor: Cursor?
+
+        try {
+            cursor = db.rawQuery(query,null)
+        }catch (e:Exception){
+            e.printStackTrace()
+            db.execSQL(query)
+            return null
+        }
+
+        val user: Usuario?
+
+        cursor.moveToFirst()
+        user = Usuario(
+            id = cursor.getInt(cursor.getColumnIndex("id")),
+            nombre = cursor.getString(cursor.getColumnIndex("nombre")),
+            apellido = cursor.getString(cursor.getColumnIndex("apellido")),
+            dni = cursor.getString(cursor.getColumnIndex("dni")),
+            email = cursor.getString(cursor.getColumnIndex("email")),
+            password = cursor.getString(cursor.getColumnIndex("password"))
+        )
+
+        return user
+
+
     }
 
     
