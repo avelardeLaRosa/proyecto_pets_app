@@ -3,6 +3,7 @@ package com.system.proyecto_pets.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.system.proyecto_pets.databinding.ActivityLoginBinding
@@ -35,12 +36,13 @@ class LoginActivity : AppCompatActivity() {
         val user = binding.etUser.text.toString().trim()
         val pass = binding.etContraseA.text.toString().trim()
 
+
         if (user.isEmpty() || pass.isEmpty()){
             errorMsg()
         }else if (usuario.validarUser(user,pass,this)!=null){
             startActivity(Intent(this, HomeActivity::class.java))
         }else{
-            errorUser()
+            Toast.makeText(this,"Usuario no existe",Toast.LENGTH_SHORT).show()
         }
 
     }
