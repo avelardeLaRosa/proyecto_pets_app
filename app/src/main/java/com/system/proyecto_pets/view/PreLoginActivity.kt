@@ -12,7 +12,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.system.proyecto_pets.R
 import com.system.proyecto_pets.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class PreLoginActivity : AppCompatActivity() {
 
 
     private val id = 100

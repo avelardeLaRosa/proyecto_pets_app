@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/btn_draw_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+
+        />
+
+    <item
+        android:id="@+id/btnMenu"
+        android:icon="@drawable/ic_menu"
+        android:title="Menu"
+        />
+
+    </group>
+
+    <item android:title="Perfil">
+
+        <menu>
+            <item
+                android:id="@+id/btn_draw_edit_profile"
+                android:title="Mis Datos"
+                android:icon="@drawable/ic_baseline_edit_24"
+                />
+        </menu>
+    </item>
+    <item android:title="Veterinarias">
+
+        <menu>
+
+            <item
+                android:id="@+id/btn_draw_CercaDeTi"
+                android:icon="@drawable/ic_map"
+                android:title="Cerca de ti"
+                />
+
+            <item
+                android:id="@+id/btn_draw_razas"
+                android:icon="@drawable/ic_pets"
+                android:title="Adopta"
+                />
+
+        </menu>
+    </item>
+
+
+    <item
+        android:id="@+id/btn_draw_sign_out"
+        android:title="Cerrar Sesion"
+        />
+
+
+
+</menu>

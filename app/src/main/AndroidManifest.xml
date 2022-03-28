@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.PreLoginActivity"
             android:exported="true" />
     </application>
 

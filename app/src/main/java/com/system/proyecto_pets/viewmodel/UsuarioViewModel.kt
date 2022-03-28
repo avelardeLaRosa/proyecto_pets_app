@@ -35,4 +35,15 @@ class UsuarioViewModel : ViewModel() {
         return sqLiteHelper.validar(user, pass)
     }
 
+    //Eliminar Usuario
+    fun eliminarUser(id:Int, context: Context):Int{
+        val sqLiteHelper =  UsuarioDao(context)
+        return sqLiteHelper.eliminar(id)
+    }
+
+    fun editarUser(user:Usuario, context: Context):Int{
+        val sqlLiteHelper = UsuarioDao(context)
+        return sqlLiteHelper.updateUser(user)
+    }
+
 }

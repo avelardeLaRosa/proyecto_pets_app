@@ -85,6 +85,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_edit_nombre"
@@ -93,7 +94,7 @@
             android:hint="@string/Nombres"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-
+            android:enabled="false"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,6 +106,7 @@
         app:layout_constraintTop_toBottomOf="@id/tiLayout_edit_nombre"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_edit_apellidos"
@@ -114,6 +116,7 @@
             android:maxLines="1"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:enabled="false"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,6 +128,7 @@
         app:layout_constraintTop_toBottomOf="@id/tiLayout_edit_Apellidos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_edit_dni"
@@ -136,6 +140,9 @@
             android:maxLength="8"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+
+            android:enabled="false"
+
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,6 +155,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
+
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_edit_email"
@@ -158,17 +167,23 @@
             android:inputType="textEmailAddress"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+
+            android:enabled="false"
+
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiLayout_edit_Password"
+        app:passwordToggleEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/tiLayout_edit_Email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_edit_password"
@@ -179,16 +194,32 @@
             android:inputType="textPassword"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:enabled="false"
+
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/btnModificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Modificar"
+        android:textColor="@color/splash_pet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tiLayout_edit_Password"
+        app:layout_constraintBottom_toTopOf="@id/btnEliminar"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/splash_pet"
+        />
+    <Button
         android:id="@+id/btnEliminar"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="30dp"
         android:layout_marginRight="50dp"
         android:drawableLeft="@drawable/ic_outline_delete_24"
@@ -197,7 +228,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tiLayout_edit_Password"
+        app:layout_constraintTop_toBottomOf="@id/btnModificar"
         app:strokeColor="@color/red" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package com.system.proyecto_pets.viewmodel.dao
 
+import android.R.attr.id
 import android.R.attr.password
 import android.content.ContentValues
 import android.content.Context
@@ -10,7 +11,7 @@ import androidx.room.RoomMasterTable
 import com.system.proyecto_pets.model.Usuario
 
 
-class UsuarioDao(context:Context):SQLiteOpenHelper(context, DB_NAME, null , DB_VERSION){
+class UsuarioDao(val context:Context):SQLiteOpenHelper(context, DB_NAME, null , DB_VERSION){
 
     companion object{
         //nombre bd
@@ -62,6 +63,23 @@ class UsuarioDao(context:Context):SQLiteOpenHelper(context, DB_NAME, null , DB_V
         db.close()
 
         return success
+
+    }
+
+    fun updateUser(user:Usuario):Int{
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID, user.id)
+        contentValues.put(NOMBRE, user.nombre)
+        contentValues.put(APELLIDO, user.apellido)
+        contentValues.put(DNI, user.dni)
+        contentValues.put(EMAIL, user.email)
+        contentValues.put(PASSWORD, user.password)
+
+        val sucess = db.update(TABLE_NAME,contentValues, "id=${user.id}",null)
+        db.close()
+        return sucess
 
     }
 
@@ -118,39 +136,44 @@ class UsuarioDao(context:Context):SQLiteOpenHelper(context, DB_NAME, null , DB_V
 
     //VALIDAR USUARIO Y CONTRASEÑA
 
-    fun validar(us:String, pass: String):Usuario?{
+    fun validar(us:String, pass: String):Usuario? {
         val db = writableDatabase
         val query = "SELECT * FROM $TABLE_NAME WHERE $EMAIL = '$us' AND $PASSWORD = '$pass'"
 
 
         val cursor: Cursor?
+        val user: Usuario?
 
         try {
-            cursor = db.rawQuery(query,null)
-        }catch (e:Exception){
+            cursor = db.rawQuery(query, null)
+            cursor.moveToFirst()
+            user = Usuario(
+                id = cursor.getInt(cursor.getColumnIndex("id")),
+                nombre = cursor.getString(cursor.getColumnIndex("nombre")),
+                apellido = cursor.getString(cursor.getColumnIndex("apellido")),
+                dni = cursor.getString(cursor.getColumnIndex("dni")),
+                email = cursor.getString(cursor.getColumnIndex("email")),
+                password = cursor.getString(cursor.getColumnIndex("password"))
+            )
+
+
+
+        } catch (e: Exception) {
             e.printStackTrace()
             db.execSQL(query)
             return null
         }
-
-        val user: Usuario?
-
-        cursor.moveToFirst()
-        user = Usuario(
-            id = cursor.getInt(cursor.getColumnIndex("id")),
-            nombre = cursor.getString(cursor.getColumnIndex("nombre")),
-            apellido = cursor.getString(cursor.getColumnIndex("apellido")),
-            dni = cursor.getString(cursor.getColumnIndex("dni")),
-            email = cursor.getString(cursor.getColumnIndex("email")),
-            password = cursor.getString(cursor.getColumnIndex("password"))
-        )
-
         return user
-
 
     }
 
-    
+    fun eliminar(id:Int):Int{
+
+            val db = this.writableDatabase
+
+            val result = db.delete(TABLE_NAME, "id = $id", null)
 
 
+        return result
+    }
 }
