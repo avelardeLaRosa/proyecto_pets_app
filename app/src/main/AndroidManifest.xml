@@ -22,7 +22,8 @@
             android:exported="false" />
         <activity
             android:name=".view.HomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/homeActivity"/>
         <activity
             android:name=".view.SplashActivity"
             android:exported="true"

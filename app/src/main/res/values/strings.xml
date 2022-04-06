@@ -34,4 +34,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="miMascota">Mi Mascota</string>
     <string name="miCuenta">Mi Cuenta</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
 </resources>
