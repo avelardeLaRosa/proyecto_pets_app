@@ -34,10 +34,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var toogle: ActionBarDrawerToggle
-    //BOTTOM NAVIGATIO BAR
-    private lateinit var bottomNavView : BottomNavigationView
-    private lateinit var drawView: DrawerLayout
-    private lateinit var navView : NavigationView
+
 
     //llamado fragments
     private val homeFragment = HomeFragment()
@@ -47,43 +44,22 @@ class HomeActivity : AppCompatActivity() {
 
     private var preferences: SharedPreferences? = null
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        bottomNavView = binding.bottomView
-        navView = binding.navView
-        drawView = binding.drawerLayout
-
-
-
-
         toogle = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open_drawer, R.string.close_drawer)
         binding.drawerLayout.addDrawerListener(toogle)
         toogle.syncState() //sincroniza icono de menu y panel de navegacion
-
         //cambios al toolbar
         supportActionBar?.setTitle("Pets App") //cambiar titulo
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        //
         preferences = this.getSharedPreferences("session", Context.MODE_PRIVATE)
 
-
-
-        setThatFragments(homeFragment)
-
-        //al presionar boton
-        btnPress(homeFragment,cercaFragment,menuFragment)
-        //botones Drawe
-        navBtnPress()
-
-
+        //botones fragments
+        setFragmentos()
 
 
     }
@@ -117,49 +93,47 @@ class HomeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
-    private fun btnPress(fragment: Fragment, fragment2: Fragment, fragment3: Fragment){
-        bottomNavView.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.btnHome -> {
-                    setThatFragments(fragment)
-                }
-                R.id.btnCercaDeTi -> {
-                    setThatFragments(fragment2)
-                }
-                R.id.btnMenu -> {
-                    setThatFragments(fragment3)
-                }
-            }
-            true
-        }
-    }
-
-    private fun setThatFragments(fragment : Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container, fragment)
-            commit()
-        }
-    }
-
-
-    //NavView botones
-    private fun navBtnPress(){
-        navView.setNavigationItemSelectedListener {
+    private fun setFragmentos(){
+        binding.navView.setNavigationItemSelectedListener{
             when(it.itemId){
                 R.id.btn_draw_home -> {
-                    setThatFragments(homeFragment)
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentContainerView,HomeFragment())
+                        commit()
+                    }
                 }
                 R.id.btn_draw_edit_profile -> {
-                    setThatFragments(menuFragment)
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentContainerView,MenuFragment())
+                        commit()
+                    }
                 }
                 R.id.btn_draw_CercaDeTi -> {
-                    setThatFragments(cercaFragment)
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentContainerView,CercaFragment())
+                        commit()
+                    }
                 }
                 R.id.btn_draw_razas -> {
-                    setThatFragments(razaFragment)
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentContainerView,RazasFragment())
+                        commit()
+                    }
                 }
                 R.id.btn_draw_sign_out -> {
+                    val editor:SharedPreferences.Editor = preferences!!.edit()
+                    editor.clear()
+                    editor.apply()
+                    startActivity(Intent(this,PreLoginActivity::class.java))
+                }
+            }
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
+
+    }
+    /*
+
                     val editor:SharedPreferences.Editor = preferences!!.edit()
                     editor.clear()
                     editor.apply()
@@ -168,15 +142,9 @@ class HomeActivity : AppCompatActivity() {
 
             }
             //cierra el drawer al abrir fragment
-            drawView.closeDrawer(GravityCompat.START)
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
 
             true
 
-        }
+        }*/
     }
-
-
-
-
-
-}
