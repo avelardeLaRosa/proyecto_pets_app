@@ -98,7 +98,7 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.btn_draw_home -> {
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.fragmentContainerView,HomeFragment())
+                        replace(R.id.fragmentContainerView,homeFragment)
                         commit()
                     }
                 }
